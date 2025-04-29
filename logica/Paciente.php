@@ -1,29 +1,24 @@
 <?php
-class Paciente {
-    private $idPaciente;
-    private $nombre;
-    private $apellido;
-    private $correo;
-    private $clave;
+require_once "logica/Persona.php";
+
+class Paciente extends Persona {
     private $fechaNacimiento;
-    
-    public function __construct($idPaciente, $nombre, $apellido, $correo, $clave, $fechaNacimiento) {
-        $this->idPaciente = $idPaciente;
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->correo = $correo;
-        $this->clave = $clave;
+
+    public function __construct($id = "", $nombre = "", $apellido = "", $correo = "", $clave = "", $fechaNacimiento = "") {
+        parent::__construct($id, $nombre, $apellido, $correo, $clave);
         $this->fechaNacimiento = $fechaNacimiento;
     }
 
-    // Getters
-    public function getIdPaciente() { return $this->idPaciente; }
-    public function getNombre() { return $this->nombre; }
-    public function getApellido() { return $this->apellido; }
-    public function getCorreo() { return $this->correo; }
-    public function getClave() { return $this->clave; }
-    public function getFechaNacimiento() { return $this->fechaNacimiento; }
-    
+    // Getter y Setter específico de Paciente
+    public function getFechaNacimiento() {
+        return $this->fechaNacimiento;
+    }
+
+    public function setFechaNacimiento($fechaNacimiento) {
+        $this->fechaNacimiento = $fechaNacimiento;
+    }
+
+    // Método de autenticación
     public static function autenticar($correo) {
         $conexion = new Conexion();
         $conexion->abrir();

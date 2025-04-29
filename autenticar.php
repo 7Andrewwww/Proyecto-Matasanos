@@ -12,9 +12,10 @@ if(isset($_POST["autenticar"])){
     $medico = Medico::autenticar($correo);
     
     if($medico && $clave == $medico->getClave()) {
-        $_SESSION["id"] = $medico->getIdMedico();
+        $_SESSION["id"] = $medico->getId(); // Cambiado de getIdMedico() a getId()
         $_SESSION["rol"] = "medico";
         $_SESSION["nombre"] = $medico->getNombre() . " " . $medico->getApellido();
+        $_SESSION["especialidad"] = $medico->getEspecialidad()->getNombre(); // Opcional
         header("Location: index.php");
         exit();
     }
@@ -23,7 +24,7 @@ if(isset($_POST["autenticar"])){
     $paciente = Paciente::autenticar($correo);
     
     if($paciente && $clave == $paciente->getClave()) {
-        $_SESSION["id"] = $paciente->getIdPaciente();
+        $_SESSION["id"] = $paciente->getId(); // Cambiado de getIdPaciente() a getId()
         $_SESSION["rol"] = "paciente";
         $_SESSION["nombre"] = $paciente->getNombre() . " " . $paciente->getApellido();
         header("Location: index.php");

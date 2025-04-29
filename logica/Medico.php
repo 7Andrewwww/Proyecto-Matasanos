@@ -12,19 +12,14 @@ class Medico extends Persona {
         $this -> foto = $foto;
         $this -> especialidad = $especialidad;
     }
+
+    public function getFoto() {
+        return $this->foto;
+    }
     
     public function getEspecialidad(){
         return $this -> especialidad;
     }
-
-
-    // Getters
-    public function getIdMedico() { return $this->id; }
-    public function getNombre() { return $this->nombre; }
-    public function getApellido() { return $this->apellido; }
-    public function getCorreo() { return $this->correo; }
-    public function getClave() { return $this->clave; }
-    public function getFoto() { return $this->foto; }
     
     public function consultarPorEspecialidad(){
         $conexion = new Conexion();
